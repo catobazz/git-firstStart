@@ -1,0 +1,122 @@
+<!-- 
+    
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Виселица!a2</title>
+  </head>
+  <body>
+    <h1>Виселица!a2</h1>
+    <script>
+      /*
+       // Это код игры из прошлой версии.
+
+       // Создаем массив со словами
+       var words = ["программа","макака","прекрасный","оладушек"];
+       // Выбираем случайное слово
+       var word = words[Math.floor(Math.random() * words.length)];
+       // Создаем итоговый массив
+       var answerArray = [];
+       for (var i = 0; i < word.length; i++) {
+        answerArray[i] = "_";
+       }
+       var remainingLetters = word.length;
+       // Игровой цикл
+       while (remainingLetters > 0) {
+       // Показываем состояние игры
+       alert(answerArray.join(" "));
+           // Запрашиваем вариант ответа
+       var guess = prompt("Угадайте букву, или нажмите Отмена для выхода из игры.");
+       if (guess === null) {
+       // Выходим из игрового цикла
+       break;
+       } else if (guess.length !== 1) {
+       alert("Пожалуйста, введите одиночную букву.");
+       } else {
+       // Обновляем состояние игры
+       for (var j = 0; j < word.length; j++) {
+       if (word[j] === guess) {
+       answerArray[j] = guess;
+       remainingLetters--;
+       }
+       }
+       }
+       // Конец игрового цикла
+       }
+       // Отображаем ответ и поздравляем игрока
+       alert(answerArray.join(" "));
+       alert("Отлично! Было загадано слово " + word);
+*/
+
+      //Вот объявления функций, код которых вам нужно написать:
+      var pickWord = function () {
+        // Возвращает случайно выбранное слово
+        var words = ["программа", "программа", "программа", "программа"];
+        return words[Math.floor(Math.random() * words.length)];
+      };
+      var setupAnswerArray = function (word) {
+        // Возвращает итоговый массив для заданного слова word
+        var answerArray = [];
+        for (var i = 0; i < word.length; i++) {
+          answerArray[i] = "_";
+        }
+        return answerArray;
+      };
+      var showPlayerProgress = function (answerArray) {
+        // С помощью alert отображает текущее состояние игры
+        return alert(answerArray.join(" "));
+      };
+      var getGuess = function () {
+        // Запрашивает ответ игрока с помощью prompt
+        return prompt("Угадайте букву, или нажмите Отмена для выхода из игры.");
+      };
+      var updateGameState = function (guess, word, answerArray) {
+        // Обновляет answerArray согласно ответу игрока (guess)
+        // возвращает число, обозначающее, сколько раз буква guess
+        // встречается в слове, чтобы можно было обновить значение
+        // remainingLetters
+        var remainingLetters = word.length;
+        for (var j = 0; j < word.length; j++) {
+          if (word[j] === guess) {
+            answerArray[j] = guess;
+            remainingLetters--;
+          }
+        }
+        return (remainingLetters = word.length - remainingLetters);
+      };
+      var showAnswerAndCongratulatePlayer = function (answerArray) {
+        // С помощью alert показывает игроку отгаданное слово
+        // и поздравляет его с победой
+        return alert(answerArray.join(" "));
+        return alert("Отлично! Было загадано слово " + word);
+      };
+      // Выше cоздайте свои функции
+      // Ниже - основной код игры
+
+      // word: загаданное слово
+      var word = pickWord();
+      // answerArray: итоговый массив
+      var answerArray = setupAnswerArray(word);
+      // remainingLetters: сколько букв осталось угадать
+      var remainingLetters = word.length;
+      while (remainingLetters > 0) {
+        showPlayerProgress(answerArray);
+        // guess: ответ игрока
+        var guess = getGuess();
+        if (guess === null) {
+          break;
+        } else if (guess.length !== 1) {
+          alert("Пожалуйста, введите одиночную букву.");
+        } else {
+          // correctGuesses: количество открытых букв
+          var correctGuesses = updateGameState(guess, word, answerArray);
+          remainingLetters -= correctGuesses;
+        }
+      }
+      showAnswerAndCongratulatePlayer(answerArray);
+    </script>
+  </body>
+</html>
